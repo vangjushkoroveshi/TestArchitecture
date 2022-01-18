@@ -1,0 +1,5 @@
+base\BaseTest.class
+tests\api\ApiRequestTests.class
+utils\UserDetails.class
+tests\ui\UiTests.class
+tests\db\DbTests.class
