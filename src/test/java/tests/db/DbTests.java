@@ -42,7 +42,7 @@ public class DbTests {
 
         for (int i=0; i<a.size();i++){
             ObjectMapper o = new ObjectMapper();
-            o.writeValue(new File(System.getProperty("user.dir")+"\\src\\test\\java\\utils\\customerInfo"+i+".json"), a.get(i));
+            o.writeValue(new File(System.getProperty("user.dir")+"\\src\\test\\java\\tests\\utils\\customerInfo"+i+".json"), a.get(i));
             Gson g = new Gson();
             String jsonString = g.toJson(a.get(i));
             aj.add(jsonString);
@@ -56,7 +56,7 @@ public class DbTests {
         String un2 = un1.replace("}\"", "}");
         System.out.println(un2);
 
-        try(FileWriter file = new FileWriter(System.getProperty("user.dir")+"\\src\\test\\java\\utils\\SingleJson.json")) {
+        try(FileWriter file = new FileWriter(System.getProperty("user.dir")+"\\src\\test\\java\\tests\\utils\\SingleJson.json")) {
             file.write(un2);
         }
 
