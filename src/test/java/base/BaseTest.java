@@ -15,29 +15,21 @@ public class BaseTest {
 
     protected RemoteWebDriver driver;
 
-    //BROWSER => chrome/firefox
-    //HUB_HOST =>localhost / 10.0.1.3 / hostname
-
-    String host = "localhost";
-
     @BeforeTest
-
     public void setupDriver() throws MalformedURLException {
 
         if (System.getProperty("BROWSER") !=null && System.getProperty("BROWSER").equalsIgnoreCase("firefox")){
             FirefoxOptions firefoxOptions = new FirefoxOptions();
             firefoxOptions.setCapability("platformName", Platform.LINUX);
 
-            host = System.getProperty("HUB_HOST");
-            this.driver = new RemoteWebDriver(new URL("http://"+host+":4444"), firefoxOptions);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444"), firefoxOptions);
 
         }
         else{
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.setCapability("platformName", Platform.LINUX);
             chromeOptions.setCapability("browserName", "chrome");
-            host = System.getProperty("HUB_HOST");
-            this.driver = new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
 
         }
         driver.manage().window().maximize();
