@@ -35,8 +35,9 @@ public class BaseTest {
         else{
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.setCapability("platformName", Platform.LINUX);
+            chromeOptions.setCapability("browserName", "chrome");
             host = System.getProperty("HUB_HOST");
-            this.driver = new RemoteWebDriver(new URL("http://"+host+":4444"), chromeOptions);
+            this.driver = new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
 
         }
         driver.manage().window().maximize();
