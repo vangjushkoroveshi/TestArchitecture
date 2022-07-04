@@ -21,8 +21,8 @@ public class BaseTest {
     String host = "localhost";
 
     @BeforeTest
-    @Parameters({"browser"})
-    public void setupDriver(String browser) throws MalformedURLException {
+
+    public void setupDriver() throws MalformedURLException {
 
         if (System.getProperty("BROWSER") !=null && System.getProperty("BROWSER").equalsIgnoreCase("firefox")){
             FirefoxOptions firefoxOptions = new FirefoxOptions();
