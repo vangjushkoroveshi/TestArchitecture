@@ -18,7 +18,8 @@ pipeline {
             steps {
 			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     //sh
-			        bat 'docker login --username=${user} --password=${pass}'
+                    bat "echo ${user}  / ${pass}"
+			        bat "docker login --username=${user} --password=${pass}"
 			        bat "docker push vangjushk/testarchitecture:latest"
 			    }
             }
