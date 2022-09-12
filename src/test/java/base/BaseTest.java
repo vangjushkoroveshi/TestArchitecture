@@ -9,13 +9,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 public class BaseTest {
 
@@ -28,8 +24,9 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public synchronized void setUp() throws MalformedURLException {
-        setDriver(new DriverManager().initializeDriver());
+    @Parameters({"browser","url"})
+    public synchronized void setUp(String browser, String url) throws MalformedURLException {
+        setDriver(new DriverManager().initializeDriver(browser, url));
     }
 
     @AfterMethod

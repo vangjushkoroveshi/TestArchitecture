@@ -17,7 +17,6 @@ ADD target/libs                         libs
 ADD ui-module.xml                   ui-module.xml
 ADD api-module.xml                  api-module.xml
 ADD db-module.xml                   db-module.xml
-ADD src/test/resources/config.properties                   config.properties
 
 # ADD health check script
 ADD healthcheck.sh                      healthcheck.sh
@@ -26,4 +25,4 @@ ADD healthcheck.sh                      healthcheck.sh
 #HUB_HOST
 #MODULE
 #ENTRYPOINT sh healthcheck.sh
-ENTRYPOINT java -cp testarchitecture.jar:testarchitecture-tests.jar:libs:config.properties/* -DHUB_HOST=$HUB_HOST -DBROWSER=$BROWSER org.testng.TestNG $MODULE
+ENTRYPOINT java -cp testarchitecture.jar:testarchitecture-tests.jar:libs/* -DHUB_HOST=$HUB_HOST -DBROWSER=$BROWSER org.testng.TestNG $MODULE

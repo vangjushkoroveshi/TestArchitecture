@@ -1,23 +1,18 @@
 package driverFactory;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import utilities.ConfigLoader;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverManager {
-    public RemoteWebDriver initializeDriver() throws MalformedURLException {
+    public RemoteWebDriver initializeDriver(String browser, String url) throws MalformedURLException {
 
         RemoteWebDriver driver;
-        String browser = System.getProperty("browser", ConfigLoader.getInstance().getBrowser());
+        String br = System.getProperty("browser", browser);
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", browser);
+        capabilities.setCapability("browserName", br);
 
         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
                 capabilities);
@@ -32,7 +27,7 @@ public class DriverManager {
 //        }
 
         driver.manage().window().maximize();
-        driver.get(ConfigLoader.getInstance().getBaseUrl());
+        driver.get(url);
         return driver;
     }
 }
