@@ -14,20 +14,20 @@ public class DriverManager {
 
         RemoteWebDriver driver;
         String br = System.getProperty("browser", browser);
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("browserName", br);
-//
-//        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
-//                capabilities);
-        if (browser.equalsIgnoreCase("chrome")){
-            WebDriverManager.chromedriver().cachePath("Drivers").setup();
-            driver = new ChromeDriver();
-        } else if(browser.equalsIgnoreCase("firefox")){
-            WebDriverManager.firefoxdriver().cachePath("Drivers").setup();
-            driver = new FirefoxDriver();
-        } else {
-            throw new IllegalStateException("Invalid browser");
-        }
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", br);
+
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+                capabilities);
+//        if (browser.equalsIgnoreCase("chrome")){
+//            WebDriverManager.chromedriver().cachePath("Drivers").setup();
+//            driver = new ChromeDriver();
+//        } else if(browser.equalsIgnoreCase("firefox")){
+//            WebDriverManager.firefoxdriver().cachePath("Drivers").setup();
+//            driver = new FirefoxDriver();
+//        } else {
+//            throw new IllegalStateException("Invalid browser");
+//        }
 
         driver.manage().window().maximize();
         driver.get(url);
