@@ -19,18 +19,16 @@ import java.net.URL;
 
 public class BaseTest {
 
-    private final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-
-    protected void setDriver(WebDriver driver) {
+    private final ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+    protected void setDriver(RemoteWebDriver driver) {
         this.driver.set(driver);
     }
-
     protected WebDriver getDriver() {
         return this.driver.get();
     }
 
     @BeforeMethod
-    public synchronized void setUp() {
+    public synchronized void setUp() throws MalformedURLException {
         setDriver(new DriverManager().initializeDriver());
     }
 
