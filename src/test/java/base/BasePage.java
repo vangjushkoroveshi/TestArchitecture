@@ -2,6 +2,7 @@ package base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
@@ -15,7 +16,8 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
-    public void load(String endPoint){
-        driver.get(ConfigLoader.getInstance().getBaseUrl() +endPoint);
+    @Parameters("url")
+    public void load(String url){
+        driver.get(url);
     }
 }
