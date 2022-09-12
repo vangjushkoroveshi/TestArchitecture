@@ -7,7 +7,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
 import tests.utils.UserDetails;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,8 +18,6 @@ public class DbTests {
     @Test
     public void dbTest() throws ClassNotFoundException, IOException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-
-
         Connection conn = null;
 
         ArrayList<UserDetails> a = new ArrayList<UserDetails>();

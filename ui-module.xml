@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="TestArchitecture - UI">
-
-
-    <test name="UI Test">
-        <parameter name="url" value="https://www.saucedemo.com/"></parameter>
+<suite name="TestArchitecture - UI" verbose="1" parallel="tests" thread-count="5">
+<!--    <suite name="TestArchitecture - UI">-->
+    <test name="Successful Login">
         <parameter name="username" value="standard_user"></parameter>
         <parameter name="password" value="secret_sauce"></parameter>
         <classes>
-            <class name="tests.ui.UiTests"></class>
+            <class name="tests.ui.LoginTest"></class>
         </classes>
     </test>
+
+    <test name="Invalid Login / Invalid Password ">
+        <parameter name="username" value="standard_user"></parameter>
+        <parameter name="password" value="secret"></parameter>
+        <classes>
+            <class name="tests.ui.InvalidLoginTest"></class>
+        </classes>
+    </test>
+
+    <test name="Sort Product">
+        <parameter name="username" value="standard_user"></parameter>
+        <parameter name="password" value="secret_sauce"></parameter>
+        <classes>
+            <class name="tests.ui.ProductsSortTest"></class>
+        </classes>
+    </test>
+
+    <test name="Buy Product">
+        <parameter name="username" value="standard_user"></parameter>
+        <parameter name="password" value="secret_sauce"></parameter>
+        <classes>
+            <class name="tests.ui.BuyProductTest"></class>
+        </classes>
+    </test>
+
 </suite>

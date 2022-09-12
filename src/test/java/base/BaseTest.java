@@ -1,42 +1,41 @@
 package base;
 
+import driverFactory.DriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BaseTest {
 
-    protected RemoteWebDriver driver;
+    private final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    @BeforeTest
-    public void setupDriver() throws MalformedURLException {
-
-        if (System.getProperty("BROWSER") !=null && System.getProperty("BROWSER").equalsIgnoreCase("firefox")){
-            FirefoxOptions firefoxOptions = new FirefoxOptions();
-            firefoxOptions.setCapability("platformName", Platform.LINUX);
-
-            driver = new RemoteWebDriver(new URL("http://localhost:4444"), firefoxOptions);
-
-        }
-        else{
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.setCapability("platformName", Platform.LINUX);
-            chromeOptions.setCapability("browserName", "chrome");
-            driver = new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
-
-        }
-        driver.manage().window().maximize();
+    protected void setDriver(WebDriver driver) {
+        this.driver.set(driver);
     }
 
-    @AfterTest
-    public void quiteBrowser(){
-        this.driver.quit();
+    protected WebDriver getDriver() {
+        return this.driver.get();
+    }
+
+    @BeforeMethod
+    public synchronized void setUp() {
+        setDriver(new DriverManager().initializeDriver());
+    }
+
+    @AfterMethod
+    public synchronized void tearDown() {
+        getDriver().quit();
     }
 }

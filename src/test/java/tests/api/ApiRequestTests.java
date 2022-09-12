@@ -1,14 +1,11 @@
 package tests.api;
 
-import base.BaseTest;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasSize;
 
-public class ApiRequestTests{
+public class   ApiRequestTests{
 
     @Test(dataProvider="seasonsAndNumberOfRaces")
     public void test_NumberOfCircuits_ShouldBe_DataDriven(String season, int numberOfRaces) {
