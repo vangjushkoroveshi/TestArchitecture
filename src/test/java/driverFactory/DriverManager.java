@@ -16,7 +16,7 @@ import java.net.URL;
 public class DriverManager {
     public RemoteWebDriver initializeDriver(String browser, String url) throws MalformedURLException {
 
-        RemoteWebDriver driver;
+//        RemoteWebDriver driver;
         String br = System.getProperty("browser", browser);
 //        DesiredCapabilities capabilities = new DesiredCapabilities();
 //        capabilities.setCapability("browserName", br);
@@ -34,19 +34,25 @@ public class DriverManager {
             chromeOptions.addArguments("--disable-extensions");
             chromeOptions.addArguments("--ignore-certificate-errors");
             chromeOptions.addArguments("disable-infobars");
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+            RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
                     chromeOptions);
+            driver.manage().window().maximize();
+            driver.get(url);
+            return driver;
         } else if(browser.equalsIgnoreCase("firefox")){
             FirefoxOptions firefoxOptions = new FirefoxOptions();
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+            RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
                     firefoxOptions);
+            driver.manage().window().maximize();
+            driver.get(url);
+            return driver;
         } else {
             throw new IllegalStateException("Invalid browser");
         }
 
-        driver.manage().window().maximize();
-        driver.get(url);
-        return driver;
+//        driver.manage().window().maximize();
+//        driver.get(url);
+//        return driver;
     }
 }
 //if (br.equalsIgnoreCase("chrome")){
