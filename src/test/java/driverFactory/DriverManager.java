@@ -2,7 +2,9 @@ package driverFactory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -14,11 +16,42 @@ public class DriverManager {
 
         RemoteWebDriver driver;
         String br = System.getProperty("browser", browser);
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", br);
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("browserName", br);
+//
+//        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+//                capabilities);
 
-        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
-                capabilities);
+        if (br.equalsIgnoreCase("chrome")){
+            ChromeOptions chromeOptions = new ChromeOptions();
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+                    chromeOptions);
+        } else if(browser.equalsIgnoreCase("firefox")){
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+                    firefoxOptions);
+        } else {
+            throw new IllegalStateException("Invalid browser");
+        }
+
+        driver.manage().window().maximize();
+        driver.get(url);
+        return driver;
+    }
+}
+//if (br.equalsIgnoreCase("chrome")){
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+//        chromeOptions);
+//        } else if(browser.equalsIgnoreCase("firefox")){
+//        FirefoxOptions firefoxOptions = new FirefoxOptions();
+//        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+//        firefoxOptions);
+//        } else {
+//        throw new IllegalStateException("Invalid browser");
+//        }
+
+
 //        if (browser.equalsIgnoreCase("chrome")){
 //            WebDriverManager.chromedriver().cachePath("Drivers").setup();
 //            driver = new ChromeDriver();
@@ -28,9 +61,3 @@ public class DriverManager {
 //        } else {
 //            throw new IllegalStateException("Invalid browser");
 //        }
-
-        driver.manage().window().maximize();
-        driver.get(url);
-        return driver;
-    }
-}
