@@ -8,7 +8,7 @@ WORKDIR /usr/share/testarchitectureDocker
 # ADD .jar under target from host
 ADD target/testarchitecture.jar          testarchitecture.jar
 ADD target/testarchitecture-tests.jar    testarchitecture-tests.jar
-ADD target/libs                         libs
+ADD target/libs                          libs
 
 #in case of any other dependecy like .csv/ .json / .xls
 # please ADD that as well
