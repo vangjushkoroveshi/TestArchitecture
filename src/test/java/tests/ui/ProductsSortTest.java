@@ -26,7 +26,7 @@ public class ProductsSortTest extends BaseTest {
 
         // Revers the first list and compare
         Collections.reverse(list_A_Z);
-        Assert.assertTrue(list_Z_A.equals(list_A_Z));;
+        Assert.assertEquals(list_Z_A, list_A_Z);
 
     }
 }

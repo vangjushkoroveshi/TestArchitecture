@@ -11,7 +11,6 @@ public class InvalidLoginTest extends BaseTest {
     @Test
     @Parameters({"username", "password"})
     public void loginTestWithIncorrectCredential(String username, String invalidPassword){
-
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.login(username, invalidPassword);
         Assert.assertEquals(loginPage.errorMsgOnLoginPage(), "Epic sadface: Username and password do not match any user in this service");

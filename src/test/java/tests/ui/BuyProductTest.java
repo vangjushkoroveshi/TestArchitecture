@@ -12,10 +12,9 @@ public class BuyProductTest extends BaseTest {
 
     @Test
     @Parameters({"username", "password"})
-    public void loginTestWithCorrectCredentials(String username, String password){
+    public void buyProduct(String username, String password){
 
         LoginPage loginPage = new LoginPage(getDriver());
-//        loginPage.goTo(url);
         loginPage.login(username, password);
         Assert.assertTrue(loginPage.loginValidate());
 

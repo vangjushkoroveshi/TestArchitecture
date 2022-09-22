@@ -22,10 +22,6 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
-//    public void goTo(String url){
-//        this.driver.get(url);
-//        this.wait.until(ExpectedConditions.visibilityOf(this.loginBtn));
-//    }
     public void login(String userName, String pass){
         driver.findElement(username).sendKeys(userName);
         driver.findElement(password).sendKeys(pass);
