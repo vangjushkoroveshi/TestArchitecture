@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //sh
-                bat "docker build -t=vangjushk/testarchitecture ."
+                bat "docker build -t=adelaceri/testarchitecture ."
             }
         }
         stage('Push Image') {
@@ -20,7 +20,7 @@ pipeline {
                     //sh
                     bat "echo ${user}  / ${pass}"
 			        bat "docker login --username=${user} --password=${pass}"
-			        bat "docker push vangjushk/testarchitecture:latest"
+			        bat "docker push adelaceri/testarchitecture:latest"
 			    }
             }
         }
